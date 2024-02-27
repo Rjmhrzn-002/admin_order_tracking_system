@@ -1,10 +1,17 @@
 import HomeCard from "../components/homeCard/HomeCard";
-import { FaHome, FaAddressCard } from "react-icons/fa";
+import { FaAddressCard, FaCartArrowDown } from "react-icons/fa";
 import { RiTodoFill } from "react-icons/ri";
-
+import BarGraph from "../components/barGraph/BarGraph";
+import LineGraph from "../components/lineGraph/LineGraph";
 const Home = () => {
   const homeCardMapList = [
-    { id: 1, title: "Orders", count: 13, icon: <FaHome />, bgColor: "#763996" },
+    {
+      id: 1,
+      title: "Orders",
+      count: 13,
+      icon: <FaCartArrowDown />,
+      bgColor: "#763996",
+    },
     {
       id: 2,
       title: "Messages",
@@ -48,8 +55,12 @@ const Home = () => {
         id="loweDiv"
         className="h-full w-full flex flex-col md:flex-row gap-2"
       >
-        <div className="bg-amber-200 flex-1 h-full w-full">Bar Graph</div>
-        <div className="bg-fuchsia-300 flex-1 h-full w-full">Stats</div>
+        <div className="flex-1 w-full">
+          <BarGraph></BarGraph>
+        </div>
+        <div className="flex-1 w-full">
+          <LineGraph></LineGraph>
+        </div>
       </div>
     </main>
   );

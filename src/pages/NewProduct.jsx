@@ -27,6 +27,7 @@ const NewProduct = () => {
             handleChange,
             handleBlur,
             handleReset,
+            isSubmitting,
           }) => {
             return (
               <Form onSubmit={handleSubmit} className="grid grid-cols-2 gap-3">
@@ -127,13 +128,14 @@ const NewProduct = () => {
                 </div>
                 <div className="flex justify-end col-span-2 gap-4">
                   <Button
-                    bgColor="#a6a6a6"
+                    bgColor="#763996"
                     title="Add"
                     type="submit"
                     onClick={handleSubmit}
+                    disabled={isSubmitting}
                   />
                   <Button
-                    bgColor="#b70000"
+                    bgColor="#a6a6a6"
                     title="Reset"
                     onClick={handleReset}
                   />

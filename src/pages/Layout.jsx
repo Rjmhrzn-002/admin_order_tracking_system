@@ -11,7 +11,7 @@ const Layout = () => {
         <aside className="w-max md:w-64">
           <Sidebar />
         </aside>
-        <section className="flex-grow w-96 md:w-full p-6">
+        <section className="flex-grow w-96 md:w-full py-6 px-8">
           <Outlet />
         </section>
       </main>
