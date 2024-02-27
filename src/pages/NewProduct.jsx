@@ -35,7 +35,7 @@ const NewProduct = () => {
                     htmlFor="productName"
                     className="uppercase text-md font-semibold"
                   >
-                    Product Name:
+                    Name:
                   </label>
                   <Input
                     placeholder="Product name"
@@ -94,7 +94,7 @@ const NewProduct = () => {
                     htmlFor="productName"
                     className="uppercase text-md font-semibold"
                   >
-                    Product Image URL:
+                    Image URL:
                   </label>
                   <Input
                     placeholder="Image Url (Optional)"

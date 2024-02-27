@@ -8,7 +8,11 @@ const Sidebar = () => {
       <section className="flex flex-col  items-center">
         {sidebarList.map((item) => {
           return (
-            <NavLink key={item.id} className="w-full" to={item.path}>
+            <NavLink
+              key={item.id}
+              className="w-full mx-auto border-b-2 border-zinc-600"
+              to={item.path}
+            >
               <SidebarButton title={item.title} icon={item.icon} />
             </NavLink>
           );

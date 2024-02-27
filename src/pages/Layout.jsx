@@ -8,10 +8,10 @@ const Layout = () => {
     <div className="min-h-screen flex flex-col">
       <Topbar />
       <main className="flex flex-grow">
-        <aside className="w-64">
+        <aside className="w-max md:w-64">
           <Sidebar />
         </aside>
-        <section className="flex-grow p-6">
+        <section className="flex-grow w-96 md:w-full p-6">
           <Outlet />
         </section>
       </main>

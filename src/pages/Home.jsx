@@ -22,7 +22,7 @@ const Home = () => {
   ];
   return (
     <main className="h-full flex flex-col gap-2">
-      <div className="flex gap-2 w-full" id="upperDiv">
+      <div className="flex flex-col md:flex-row gap-2 w-full " id="upperDiv">
         {homeCardMapList.map((card) => {
           return (
             <div className="relative flex-1">
@@ -46,10 +46,10 @@ const Home = () => {
       </div>
       <div
         id="loweDiv"
-        className="w-full bg-red-600 flex-grow flex items-center justify-between "
+        className="h-full w-full flex flex-col md:flex-row gap-2"
       >
-        <div className="bg-amber-200 flex-1 h-full ">Bar Graph</div>
-        <div className="bg-fuchsia-300 h-full px-48">Stats</div>
+        <div className="bg-amber-200 flex-1 h-full w-full">Bar Graph</div>
+        <div className="bg-fuchsia-300 flex-1 h-full w-full">Stats</div>
       </div>
     </main>
   );
