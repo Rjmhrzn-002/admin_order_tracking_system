@@ -69,9 +69,9 @@ export const data = {
 };
 const LineGraph = () => {
   return (
-    <>
+    <div className="w-full h-full shadow-md rounded-md">
       <Line data={data} options={options} />
-    </>
+    </div>
   );
 };
 
