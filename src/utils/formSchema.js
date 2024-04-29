@@ -6,19 +6,16 @@ export const loginSchema = yup.object().shape({
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("*required"),
-  email: yup.string().email("Invalid email").required("*required"),
-  password: yup
-    .string()
-    .required("*required")
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-      "Password must contain at least one lowercase letter, one uppercase letter, one digit, and be at least 8 characters long"
-    ),
+  // email: yup.string().email("Invalid email").required("*required"),
+  password: yup.string().required("*required"),
+  // .matches(
+  //   /^(?=.*[@#$!%^&*()])(?=.{5,}$).*$/,
+  //   "Password must be more than 5 characters with atleast 1 special character "
+  // ),
 });
 
 export const defaultLoginValue = {
   username: "",
-  email: "",
   password: "",
 };
 
@@ -63,20 +60,20 @@ export const defaultSignUpValue = {
 };
 
 export const newProductSchema = yup.object().shape({
-  productName: yup.string().required("*required"),
+  title: yup.string().required("*required"),
   price: yup
     .number()
     .min(10, "you cannot sell anything less than 10")
     .required("*required"),
-  brand: yup.string(),
-  imgUrl: yup.string(),
-  description: yup.string().min(12).max(500).required("*required"),
+  category: yup.string().required("*required"),
+  image: yup.string().required("*required"),
+  description: yup.string().min(8).max(200).required("*required"),
 });
 
 export const defaultAddProductValue = {
-  productName: "",
+  title: "",
   price: "",
-  brand: "",
-  imgUrl: "",
+  category: "",
+  image: "",
   description: "",
 };

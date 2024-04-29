@@ -1,20 +1,54 @@
-import { Formik, Form } from "formik";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Formik, Form } from "formik";
+import Swal from "sweetalert2";
+
+import { getAllOrder, login } from "../services/apiService";
 import { defaultLoginValue, loginSchema } from "../utils/formSchema";
 import Button from "../components/button/Button";
 import Input from "../components/input/Input";
-import { useState } from "react";
+import { AuthContext } from "../hooks/customContextHook/AuthProvider";
 
 const Login = () => {
   const [togglePassword, setPassword] = useState(false);
+
+  const { tokenSetter } = useContext(AuthContext);
 
   const handleShowpassword = (e) => {
     console.log(e.target.checked);
     setPassword(!togglePassword);
   };
+
+  const handleFormSubmit = async (data, action) => {
+    console.log(data);
+    try {
+      let response = await login({
+        username: data.username,
+        password: data.password,
+      });
+      Swal.fire({
+        icon: "success",
+        title: "Login Successfully",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+
+      tokenSetter(response.data.token);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Login Credentials Invalid",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      action.resetForm();
+      console.error("Error:", error.message);
+    }
+  };
+
   return (
     <main className="w-full bg-white my-6">
-      <section className="mx-4 md:mx-auto flex justify-center items-center">
+      <section className=" mx-4 md:mx-auto w-full flex justify-center items-center">
         <div className="w-2/3 md:w-2/5 bg-zinc-100 rounded-md overflow-hidden">
           <h1 className="uppercase text-center text-4xl font-semibold py-4 bg-[#212121] text-white ">
             Login
@@ -23,11 +57,7 @@ const Login = () => {
             <Formik
               initialValues={defaultLoginValue}
               validationSchema={loginSchema}
-              onSubmit={(values, action) => {
-                console.log(values);
-                action.resetForm();
-                console.log("Form submitted");
-              }}
+              onSubmit={handleFormSubmit}
             >
               {({
                 values,
@@ -37,14 +67,12 @@ const Login = () => {
                 handleSubmit,
                 handleBlur,
               }) => {
-                console.log(values);
-                console.log("Form changed");
                 return (
                   <Form onSubmit={handleSubmit}>
                     <Input
                       placeholder="Username"
                       name="username"
-                      value={values.username}
+                      value={values.username ?? "admin"}
                       type="text"
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -54,24 +82,12 @@ const Login = () => {
                         {errors.username}
                       </div>
                     ) : null}
-                    <Input
-                      placeholder="Email"
-                      name="email"
-                      value={values.email}
-                      type="email"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {errors.email && touched.email ? (
-                      <div className="text-red-500 font-semibold px-2">
-                        {errors.email}
-                      </div>
-                    ) : null}
+
                     <Input
                       placeholder="Password"
                       type={!togglePassword ? "password" : "text"}
                       name="password"
-                      value={values.password}
+                      value={values.password ?? "admin"}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
@@ -100,6 +116,7 @@ const Login = () => {
                       onClick={handleSubmit}
                       title="Login"
                       type="submit"
+                      bgColor="#262626"
                     />
                   </Form>
                 );
